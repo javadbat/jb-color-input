@@ -9,7 +9,7 @@ import type { ValidationItem } from "jb-validation";
 import { parseBooleanAttribute } from "jb-core";
 import { i18n } from "jb-core/i18n";
 import { dictionary } from "./i18n.js";
-import { createColorPickerPopover, createColorTrigger } from "./render.js";
+import { createColorTrigger, renderHTML } from "./render.js";
 import type { ColorInputElements } from "./types.js";
 
 export * from "./types.js";
@@ -149,13 +149,12 @@ export class JBColorInputWebComponent extends JBInputWebComponent {
   }
 
   #initColorInput(): void {
-    const style = document.createElement("style");
-    style.textContent = `${CSS} ${VariablesCSS}`;
-    this.shadowRoot?.append(style);
+    const template = document.createElement("template");
+    template.innerHTML = `<style>${CSS} ${VariablesCSS}</style>\n${renderHTML()}`;
+    this.shadowRoot?.appendChild(template.content.cloneNode(true));
 
     const trigger = createColorTrigger();
     this.elements.slots.endSection.parentElement!.append(trigger);
-    this.shadowRoot?.append(createColorPickerPopover());
     this.colorInputElements = {
       trigger,
       preview: trigger.querySelector(".color-preview")!,

@@ -13,12 +13,10 @@ export function createColorTrigger(): HTMLButtonElement {
   return template.content.firstElementChild as HTMLButtonElement;
 }
 
-export function createColorPickerPopover(): DocumentFragment {
-  const template = document.createElement("template");
-  template.innerHTML = /* html */ `
+export function renderHTML(): string {
+  return /* html */ `
     <jb-popover class="color-popover" part="popover" exportparts="content: popover-content">
       <jb-color-picker part="color-picker"></jb-color-picker>
     </jb-popover>
   `;
-  return template.content.cloneNode(true) as DocumentFragment;
 }
