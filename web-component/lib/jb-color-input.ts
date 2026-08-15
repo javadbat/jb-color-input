@@ -6,7 +6,7 @@ import "jb-popover";
 import { type ColorPickerChangeEvent, type ColorSpace, type JBColorPickerValue, parseColor } from "jb-color-picker";
 import { type JBInputValue, JBInputWebComponent } from "jb-input";
 import type { ValidationItem } from "jb-validation";
-import { parseBooleanAttribute } from "jb-core";
+import { createInputEvent, parseBooleanAttribute } from "jb-core";
 import { i18n } from "jb-core/i18n";
 import { dictionary } from "./i18n.js";
 import { createColorTrigger, renderHTML } from "./render.js";
@@ -212,20 +212,30 @@ export class JBColorInputWebComponent extends JBInputWebComponent {
     event.stopPropagation();
     this.value = event.detail.value;
     this.validation.checkValidity({ showError: false });
-    this.dispatchEvent(
-      new InputEvent("input", {
-        bubbles: true,
-        composed: true,
-        inputType: "insertReplacementText",
-      }),
-    );
+    this.#dispatchInputEvent(event);
   }
 
   #onPickerChange(event: ColorPickerChangeEvent): void {
     event.stopPropagation();
     if (this.value !== event.detail.value) this.value = event.detail.value;
     this.validation.checkValidity({ showError: true });
-    this.dispatchEvent(new Event("change", { bubbles: true, composed: true }));
+    this.#dispatchChangeEvent();
+  }
+
+  #dispatchInputEvent(sourceEvent: ColorPickerChangeEvent): void {
+    const event = createInputEvent("input", sourceEvent as unknown as InputEvent, {
+      bubbles: true,
+      cancelable: false,
+      composed: true,
+      data: sourceEvent.detail.value,
+      inputType: "insertReplacementText",
+    });
+    this.dispatchEvent(event);
+  }
+
+  #dispatchChangeEvent(): void {
+    const event = new Event("change", { bubbles: true, composed: true });
+    this.dispatchEvent(event);
   }
 
   #getColorValidations(): ValidationItem<JBInputValue>[] {
