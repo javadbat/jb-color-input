@@ -234,7 +234,7 @@ export class JBColorInputWebComponent extends JBInputWebComponent {
   }
 
   #dispatchChangeEvent(): void {
-    const event = new Event("change", { bubbles: true, composed: true });
+    const event = new Event("change", { bubbles: true, cancelable: false, composed: true });
     this.dispatchEvent(event);
   }
 
