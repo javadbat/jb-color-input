@@ -1,32 +1,36 @@
 :host {
-  --color-trigger-size: var(--jb-color-input-trigger-size, calc(var(--height) - 0.5rem));
-  --color-preview-size: var(--jb-color-input-preview-size, calc(var(--color-trigger-size) - 0.375rem));
-  --color-preview-radius: var(--jb-color-input-preview-border-radius, calc(var(--border-radius) / 2));
+  --color-trigger-padding: var(--jb-color-input-trigger-padding, 0.25rem);
+  --color-trigger-size: var(--jb-color-input-trigger-size, calc(var(--height) - (2 * var(--color-trigger-padding))));
+  --color-trigger-radius: var(--jb-color-input-trigger-border-radius, max(0px, calc(var(--border-radius) - var(--color-trigger-padding))));
+  --color-preview-padding: var(--jb-color-input-preview-padding, 0.1875rem);
+  --color-preview-size: var(--jb-color-input-preview-size, calc(var(--color-trigger-size) - (2 * var(--color-preview-padding))));
+  --color-preview-radius: var(--jb-color-input-preview-border-radius, max(0px, calc(var(--color-trigger-radius) - var(--color-preview-padding))));
+  --color-corner-shape: var(--jb-color-input-corner-shape, var(--jb-input-corner-shape, round));
   --color-preview-border: var(--jb-color-input-preview-border, 1px solid var(--jb-border, var(--jb-neutral-8)));
   --color-popover-z-index: var(--jb-color-input-popover-z-index, 1000);
 }
 
 :host([size="xs"]) {
-  --color-trigger-size: var(--jb-color-input-trigger-size, calc(var(--height) - 0.25rem));
-  --color-preview-size: var(--jb-color-input-preview-size, calc(var(--color-trigger-size) - 0.25rem));
+  --color-trigger-padding: var(--jb-color-input-trigger-padding, 0.125rem);
+  --color-preview-padding: var(--jb-color-input-preview-padding, 0.125rem);
 }
 
 :host([size="sm"]) {
-  --color-trigger-size: var(--jb-color-input-trigger-size, calc(var(--height) - 0.375rem));
-  --color-preview-size: var(--jb-color-input-preview-size, calc(var(--color-trigger-size) - 0.375rem));
+  --color-trigger-padding: var(--jb-color-input-trigger-padding, 0.1875rem);
+  --color-preview-padding: var(--jb-color-input-preview-padding, 0.1875rem);
 }
 
 :host([size="md"]) {
-  --color-trigger-size: var(--jb-color-input-trigger-size, calc(var(--height) - 0.5rem));
-  --color-preview-size: var(--jb-color-input-preview-size, calc(var(--color-trigger-size) - 0.375rem));
+  --color-trigger-padding: var(--jb-color-input-trigger-padding, 0.25rem);
+  --color-preview-padding: var(--jb-color-input-preview-padding, 0.1875rem);
 }
 
 :host([size="lg"]) {
-  --color-trigger-size: var(--jb-color-input-trigger-size, calc(var(--height) - 0.625rem));
-  --color-preview-size: var(--jb-color-input-preview-size, calc(var(--color-trigger-size) - 0.5rem));
+  --color-trigger-padding: var(--jb-color-input-trigger-padding, 0.3125rem);
+  --color-preview-padding: var(--jb-color-input-preview-padding, 0.25rem);
 }
 
 :host([size="xl"]) {
-  --color-trigger-size: var(--jb-color-input-trigger-size, calc(var(--height) - 0.75rem));
-  --color-preview-size: var(--jb-color-input-preview-size, calc(var(--color-trigger-size) - 0.625rem));
+  --color-trigger-padding: var(--jb-color-input-trigger-padding, 0.375rem);
+  --color-preview-padding: var(--jb-color-input-preview-padding, 0.3125rem);
 }

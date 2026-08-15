@@ -1,3 +1,7 @@
+.input-box {
+  corner-shape: var(--color-corner-shape);
+}
+
 .color-trigger {
   all: unset;
   box-sizing: border-box;
@@ -7,7 +11,8 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  border-radius: var(--color-preview-radius);
+  border-radius: var(--color-trigger-radius);
+  corner-shape: var(--color-corner-shape);
 
   &:disabled {
     cursor: default;
@@ -29,6 +34,7 @@
   overflow: hidden;
   border: var(--color-preview-border);
   border-radius: var(--color-preview-radius);
+  corner-shape: var(--color-corner-shape);
   background-color: #fff;
   background-image:
     linear-gradient(45deg, #d8d8d8 25%, transparent 25%),

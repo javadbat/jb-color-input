@@ -71,6 +71,34 @@ export const Sizes: Story = {
   ),
 };
 
+const cornerVariants = [
+  { label: "Square", radius: "0", shape: "round" },
+  { label: "Rounded", radius: "0.75rem", shape: "round" },
+  { label: "Scoop", radius: "1.25rem", shape: "scoop" },
+  { label: "Bevel", radius: "1.25rem", shape: "bevel" },
+  { label: "Squircle", radius: "1.5rem", shape: "squircle" },
+] as const;
+
+export const RadiusAndCornerShapes: Story = {
+  render: args => (
+    <div style={{ display: "grid", gap: "1rem", gridTemplateColumns: "repeat(auto-fit, minmax(16rem, 1fr))" }}>
+      {cornerVariants.map(({ label, radius, shape }) => (
+        <JBColorInput
+          {...args}
+          key={label}
+          label={`${label} · ${radius}`}
+          style={
+            {
+              "--jb-input-border-radius": radius,
+              "--jb-input-corner-shape": shape,
+            } as React.CSSProperties
+          }
+        />
+      ))}
+    </div>
+  ),
+};
+
 export const Required: Story = {
   args: { value: "", required: true },
   play: async ({ canvasElement }) => {
