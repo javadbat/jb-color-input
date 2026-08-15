@@ -36,6 +36,10 @@ export const Normal: Story = {
     await userEvent.click(trigger);
     await waitFor(() => expect(colorInput.isOpen).toBe(true));
     expect(colorInput.colorInputElements.popover.isOpen).toBe(true);
+    const inputBoxBounds = colorInput.elements.inputBox.getBoundingClientRect();
+    const popoverBounds = colorInput.colorInputElements.popover.elements.componentWrapper.getBoundingClientRect();
+    expect(Math.abs(popoverBounds.left - inputBoxBounds.left)).toBeLessThan(1);
+    expect(Math.abs(popoverBounds.top - inputBoxBounds.bottom)).toBeLessThan(1);
 
     nativeInput.focus();
     await userEvent.keyboard("{Control>}a{/Control}");

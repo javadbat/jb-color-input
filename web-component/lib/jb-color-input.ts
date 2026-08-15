@@ -253,7 +253,7 @@ export class JBColorInputWebComponent extends JBInputWebComponent {
     if (this.#dependenciesReadyPromise) return this.#dependenciesReadyPromise;
     this.#dependenciesReadyPromise = Promise.all([customElements.whenDefined("jb-color-picker"), customElements.whenDefined("jb-popover")]).then(() => {
       this.#dependenciesReady = true;
-      this.colorInputElements.popover.bindTarget(this.colorInputElements.trigger);
+      this.colorInputElements.popover.bindTarget(this.elements.inputBox);
       this.#syncPickerConfiguration();
       this.#updateColorPresentation();
     });
