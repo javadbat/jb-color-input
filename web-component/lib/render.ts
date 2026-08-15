@@ -6,8 +6,8 @@ import { dictionary } from "./i18n.js";
 export function createColorTrigger(): HTMLButtonElement {
   const template = document.createElement("template");
   template.innerHTML = /* html */ `
-    <button class="color-trigger" type="button" aria-label="${dictionary.get(i18n, "openColorPicker")}" aria-haspopup="dialog" aria-expanded="false">
-      <span class="color-preview" aria-hidden="true"></span>
+    <button part="color-trigger" class="color-trigger" type="button" aria-label="${dictionary.get(i18n, "openColorPicker")}" aria-haspopup="dialog" aria-expanded="false">
+      <span part="color-preview" class="color-preview" aria-hidden="true"></span>
     </button>
   `;
   return template.content.firstElementChild as HTMLButtonElement;

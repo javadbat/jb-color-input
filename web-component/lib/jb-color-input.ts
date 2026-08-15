@@ -10,6 +10,7 @@ import { createInputEvent, parseBooleanAttribute } from "jb-core";
 import { i18n } from "jb-core/i18n";
 import { dictionary } from "./i18n.js";
 import { createColorTrigger, renderHTML } from "./render.js";
+import { stepColorParameter } from "./step-color-parameter.js";
 import type { ColorInputElements } from "./types.js";
 
 export * from "./types.js";
@@ -182,12 +183,50 @@ export class JBColorInputWebComponent extends JBInputWebComponent {
     this.addEventListener("change", event => {
       if (event.target === this) this.#updateColorPresentation();
     });
-    this.addEventListener("keydown", event => {
-      if ((event as KeyboardEvent).key === "Escape" && this.isOpen) {
-        this.closePicker();
-        this.colorInputElements.trigger.focus();
-      }
-    });
+    this.addEventListener("keydown", event => this.#onKeyDown(event));
+    this.addEventListener("focus", () => this.#onFocus());
+    this.addEventListener("focusout", event => this.#onFocusOut(event));
+  }
+
+  #onFocusOut(event: FocusEvent): void {
+    const nextFocusedElement = event.relatedTarget;
+    const isFocusInside =
+      nextFocusedElement instanceof Node && (nextFocusedElement === this || this.contains(nextFocusedElement) || Boolean(this.shadowRoot?.contains(nextFocusedElement)));
+    if (!isFocusInside) this.closePicker();
+  }
+
+  #onFocus(): void {
+    if (!this.isOpen && !this.disabled) {
+      this.isOpen = true;
+    }
+  }
+
+  #onKeyDown(event: KeyboardEvent): void {
+    if (event.key === "Escape" && this.isOpen) {
+      this.closePicker();
+      this.colorInputElements.trigger.focus();
+      return;
+    }
+    if (event.target !== this || (event.key !== "ArrowUp" && event.key !== "ArrowDown")) return;
+
+    const caretPosition = this.elements.input.selectionStart;
+    if (caretPosition === null) return;
+    const steppedValue = stepColorParameter(this.value, caretPosition, event.key === "ArrowUp" ? 1 : -1);
+    if (!steppedValue) return;
+
+    event.preventDefault();
+    this.elements.input.value = steppedValue.value;
+    this.elements.input.setSelectionRange(steppedValue.caretPosition, steppedValue.caretPosition);
+    this.elements.input.dispatchEvent(
+      new InputEvent("input", {
+        bubbles: true,
+        cancelable: false,
+        composed: true,
+        data: steppedValue.replacement,
+        inputType: "insertReplacementText",
+      }),
+    );
+    this.elements.input.setSelectionRange(steppedValue.caretPosition, steppedValue.caretPosition);
   }
 
   #syncPickerConfiguration(): void {

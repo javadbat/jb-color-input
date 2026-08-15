@@ -1,12 +1,34 @@
-import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
-import * as Stories from "./JBColorInput.stories";
+import { Meta, Title, Story, Controls, Stories, Source } from "@storybook/addon-docs/blocks";
+import * as ColorInputStories from "./JBColorInput.stories";
 
-<Meta of={Stories} />
+<Meta of={ColorInputStories} />
 
-# Color Input
+<Title>JB Color Input</Title>
 
-`jb-color-input` combines the standard form, validation, and size behavior of `jb-input` with `jb-color-picker` in a popover.
+Form-associated CSS color input with the standard `jb-input` label, validation, form, and size behavior plus `jb-color-picker` in a popover.
 
-<Canvas of={Stories.Normal} />
-<Controls of={Stories.Normal} />
+<Story of={ColorInputStories.Normal} />
+<Controls of={ColorInputStories.Normal} />
+<Source of={ColorInputStories.Normal} />
 
+## Size variants
+
+The input and its color trigger support `xs`, `sm`, `md`, `lg`, and `xl` sizes.
+
+<Story of={ColorInputStories.SizeVariants} />
+
+## Disabled state
+
+Disabled state prevents text editing and picker interaction.
+
+<Story of={ColorInputStories.Disabled} />
+
+## Validation
+
+Non-empty values must use a supported RGB, hexadecimal, or OKLCH CSS color syntax.
+
+<Story of={ColorInputStories.InvalidColor} />
+
+## Other samples and variants
+
+<Stories />

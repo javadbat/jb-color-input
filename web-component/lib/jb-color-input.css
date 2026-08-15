@@ -2,6 +2,13 @@
   corner-shape: var(--color-corner-shape);
 }
 
+.jb-input-end-section-wrapper {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
 .color-trigger {
   all: unset;
   box-sizing: border-box;
