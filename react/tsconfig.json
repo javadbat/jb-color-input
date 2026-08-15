@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "rootDir": "./lib",
+    "declarationDir": "./dist",
+    "skipLibCheck": true,
+    "allowJs": false
+  },
+  "include": ["lib/**/*.ts", "lib/**/*.tsx"],
+  "exclude": ["node_modules", "**/*.spec.ts", "dist"],
+  "extends": "jb-core/configs/tsconfig-react.json"
+}

@@ -1,0 +1,62 @@
+{
+  "name": "jb-color-input",
+  "version": "0.1.0",
+  "description": "CSS color input and picker web component",
+  "type": "module",
+  "author": {
+    "name": "mohammad javad bathaei",
+    "email": "javadbat@gmail.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "jb",
+    "color",
+    "color input",
+    "color picker",
+    "rgb",
+    "oklch",
+    "web component",
+    "react",
+    "typescript"
+  ],
+  "files": [
+    "LICENSE",
+    "README.md",
+    "web-component/custom-elements.json",
+    "web-component/lib/",
+    "web-component/dist/",
+    "react/",
+    "react/dist/"
+  ],
+  "main": "index.js",
+  "types": "./web-component/dist/jb-color-input.d.ts",
+  "exports": {
+    ".": {
+      "types": "./web-component/dist/jb-color-input.d.ts",
+      "default": "./index.js"
+    },
+    "./react": {
+      "types": "./react/dist/JBColorInput.d.ts",
+      "default": "./react/index.js"
+    },
+    "./*": "./*"
+  },
+  "customElements": "web-component/custom-elements.json",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/javadbat/jb-color-input.git"
+  },
+  "bugs": "https://github.com/javadbat/jb-color-input/issues",
+  "homepage": "https://javadbat.github.io/design-system/?path=/docs/components-form-elements-inputs-jbcolorinput",
+  "dependencies": {
+    "jb-color-picker": "^0.1.0",
+    "jb-core": "^0.34.0",
+    "jb-input": "^3.18.0",
+    "jb-popover": "^1.13.0",
+    "jb-validation": "^1.0.0"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "tslib": "^2.8.1"
+  }
+}

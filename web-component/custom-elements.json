@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "../README.md",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "lib/jb-color-input.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "JBColorInputWebComponent",
+          "description": "Form-associated CSS color input with a color picker popover.",
+          "customElement": true,
+          "tagName": "jb-color-input",
+          "superclass": { "name": "JBInputWebComponent", "module": "jb-input" },
+          "attributes": [
+            {
+              "name": "color-space",
+              "type": { "text": "'rgb' | 'oklch'" },
+              "description": "Locks the embedded picker to one color space."
+            },
+            {
+              "name": "alpha-disabled",
+              "type": { "text": "boolean" },
+              "default": "false",
+              "description": "Hides alpha controls when present."
+            },
+            {
+              "name": "size",
+              "type": { "text": "'xs' | 'sm' | 'md' | 'lg' | 'xl'" },
+              "description": "Sets the input and trigger size variant."
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "value",
+              "type": { "text": "string" },
+              "description": "Current CSS color string."
+            },
+            {
+              "kind": "field",
+              "name": "valueObject",
+              "type": { "text": "JBColorPickerValue | null" },
+              "readonly": true,
+              "description": "Parsed color value or null when text is empty or invalid."
+            },
+            {
+              "kind": "field",
+              "name": "colorSpace",
+              "type": { "text": "'rgb' | 'oklch' | null" },
+              "description": "Configured color-space lock."
+            },
+            {
+              "kind": "field",
+              "name": "alphaEnabled",
+              "type": { "text": "boolean" },
+              "description": "Whether alpha controls are enabled."
+            },
+            {
+              "kind": "field",
+              "name": "showPicker",
+              "type": { "text": "boolean" },
+              "description": "Whether the picker popover is open."
+            },
+            {
+              "kind": "method",
+              "name": "openPicker",
+              "description": "Opens the color picker."
+            },
+            {
+              "kind": "method",
+              "name": "closePicker",
+              "description": "Closes the color picker."
+            }
+          ],
+          "events": [
+            {
+              "name": "input",
+              "description": "Dispatched while text or picker color changes."
+            },
+            {
+              "name": "change",
+              "description": "Dispatched when a text or picker change is committed."
+            }
+          ],
+          "cssParts": [{ "name": "popover" }, { "name": "popover-content" }, { "name": "color-picker" }]
+        }
+      ]
+    }
+  ]
+}

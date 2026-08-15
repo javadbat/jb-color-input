@@ -1,0 +1,53 @@
+.color-trigger {
+  all: unset;
+  box-sizing: border-box;
+  width: var(--color-trigger-size);
+  height: var(--color-trigger-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: var(--color-preview-radius);
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.55;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--jb-color-input-focus-ring-color, Highlight);
+    outline-offset: 2px;
+  }
+}
+
+.color-preview {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  width: var(--color-preview-size);
+  height: var(--color-preview-size);
+  overflow: hidden;
+  border: var(--color-preview-border);
+  border-radius: var(--color-preview-radius);
+  background-color: #fff;
+  background-image:
+    linear-gradient(45deg, #d8d8d8 25%, transparent 25%),
+    linear-gradient(-45deg, #d8d8d8 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #d8d8d8 75%),
+    linear-gradient(-45deg, transparent 75%, #d8d8d8 75%);
+  background-position: 0 0, 0 4px, 4px -4px, -4px 0;
+  background-size: 8px 8px;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--selected-color, transparent);
+  }
+}
+
+.color-popover {
+  --jb-popover-z-index: var(--color-popover-z-index);
+  position: relative;
+  z-index: var(--color-popover-z-index);
+}
