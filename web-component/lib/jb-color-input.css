@@ -57,3 +57,7 @@
   position: relative;
   z-index: var(--color-popover-z-index);
 }
+
+jb-color-picker::part(wrapper) {
+  border: none;
+}
