@@ -21,6 +21,8 @@ export class JBColorInputWebComponent extends JBInputWebComponent {
   #showPicker = false;
   #colorSpace: ColorSpace | null = null;
   #alphaEnabled = true;
+  #dependenciesReady = false;
+  #dependenciesReadyPromise: Promise<void> | null = null;
 
   constructor() {
     super();
@@ -29,8 +31,7 @@ export class JBColorInputWebComponent extends JBInputWebComponent {
 
   connectedCallback(): void {
     super.connectedCallback();
-    this.#syncPickerConfiguration();
-    this.#updateColorPresentation();
+    void this.#prepareDependencies();
   }
 
   override get value(): string {
@@ -57,7 +58,7 @@ export class JBColorInputWebComponent extends JBInputWebComponent {
 
   override set disabled(value: boolean) {
     super.disabled = value;
-    if (!this.colorInputElements) return;
+    if (!this.colorInputElements || !this.#dependenciesReady) return;
     this.colorInputElements.trigger.disabled = value;
     this.colorInputElements.picker.disabled = value;
     if (value) this.closePicker();
@@ -69,7 +70,7 @@ export class JBColorInputWebComponent extends JBInputWebComponent {
 
   set colorSpace(value: ColorSpace | null) {
     this.#colorSpace = value === "rgb" || value === "oklch" ? value : null;
-    if (this.colorInputElements) {
+    if (this.colorInputElements && this.#dependenciesReady) {
       this.colorInputElements.picker.colorSpace = this.#colorSpace;
       this.#updateColorPresentation();
     }
@@ -81,7 +82,7 @@ export class JBColorInputWebComponent extends JBInputWebComponent {
 
   set alphaEnabled(value: boolean) {
     this.#alphaEnabled = Boolean(value);
-    if (this.colorInputElements) {
+    if (this.colorInputElements && this.#dependenciesReady) {
       this.colorInputElements.picker.alphaEnabled = this.#alphaEnabled;
     }
   }
@@ -101,6 +102,10 @@ export class JBColorInputWebComponent extends JBInputWebComponent {
 
   openPicker(): void {
     if (this.disabled || this.#showPicker) return;
+    if (!this.#dependenciesReady) {
+      void this.#prepareDependencies().then(() => this.openPicker());
+      return;
+    }
     this.#showPicker = true;
     this.#updateColorPresentation();
     this.colorInputElements.popover.open();
@@ -109,7 +114,7 @@ export class JBColorInputWebComponent extends JBInputWebComponent {
   }
 
   closePicker(): void {
-    if (!this.colorInputElements || !this.#showPicker) return;
+    if (!this.colorInputElements || !this.#dependenciesReady || !this.#showPicker) return;
     this.#showPicker = false;
     this.colorInputElements.popover.close();
     this.colorInputElements.trigger.classList.remove("--active");
@@ -157,8 +162,6 @@ export class JBColorInputWebComponent extends JBInputWebComponent {
       picker: this.shadowRoot!.querySelector("jb-color-picker")!,
       popover: this.shadowRoot!.querySelector("jb-popover")!,
     };
-    this.colorInputElements.popover.bindTarget(trigger);
-
     this.validation.addValidationListGetter(this.#getColorValidations.bind(this));
     this.#registerColorEvents();
   }
@@ -196,7 +199,7 @@ export class JBColorInputWebComponent extends JBInputWebComponent {
   }
 
   #updateColorPresentation(): void {
-    if (!this.colorInputElements) return;
+    if (!this.colorInputElements || !this.#dependenciesReady) return;
     const parsedColor = parseColor(this.value);
     if (!parsedColor) {
       this.style.removeProperty("--selected-color");
@@ -234,6 +237,18 @@ export class JBColorInputWebComponent extends JBInputWebComponent {
         stateType: "badInput",
       },
     ];
+  }
+
+  async #prepareDependencies(): Promise<void> {
+    if (this.#dependenciesReady) return;
+    if (this.#dependenciesReadyPromise) return this.#dependenciesReadyPromise;
+    this.#dependenciesReadyPromise = Promise.all([customElements.whenDefined("jb-color-picker"), customElements.whenDefined("jb-popover")]).then(() => {
+      this.#dependenciesReady = true;
+      this.colorInputElements.popover.bindTarget(this.colorInputElements.trigger);
+      this.#syncPickerConfiguration();
+      this.#updateColorPresentation();
+    });
+    return this.#dependenciesReadyPromise;
   }
 }
 

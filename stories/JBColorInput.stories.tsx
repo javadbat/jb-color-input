@@ -38,8 +38,8 @@ export const Normal: Story = {
     expect(colorInput.colorInputElements.popover.isOpen).toBe(true);
 
     nativeInput.focus();
-    await userEvent.clear(nativeInput);
-    await userEvent.type(nativeInput, "oklch(0.7 0.15 250)");
+    await userEvent.keyboard("{Control>}a{/Control}");
+    await userEvent.keyboard("oklch(0.7 0.15 250)");
     expect(colorInput.valueObject?.colorSpace).toBe("oklch");
     expect(args.onInput).toHaveBeenCalled();
   },

@@ -4,7 +4,8 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 import "jb-color-input";
 import type { ColorSpace, JBColorInputWebComponent, JBColorPickerValue } from "jb-color-input";
-import { type BaseProps, useJBInputAttribute, useJBInputEvents } from "jb-input/react";
+import { type BaseProps, useJBInputEvents } from "jb-input/react";
+import { useJBColorInputAttributes } from "./attributes-hook.js";
 import "./module-declaration.js";
 
 export type JBColorInputProps = BaseProps<JBColorInputWebComponent> & {
@@ -39,7 +40,7 @@ export const JBColorInput = forwardRef<JBColorInputWebComponent | undefined, JBC
     ...otherProps
   } = props;
 
-  useJBInputAttribute(element, { disabled, required, validationList });
+  useJBColorInputAttributes(element, { disabled, required, validationList });
   useJBInputEvents(element, {
     onBeforeinput,
     onBlur,
