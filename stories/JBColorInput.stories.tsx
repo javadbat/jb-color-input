@@ -34,7 +34,7 @@ export const Normal: Story = {
     const trigger = colorInput.shadowRoot!.querySelector<HTMLButtonElement>(".color-trigger")!;
 
     await userEvent.click(trigger);
-    await waitFor(() => expect(colorInput.showPicker).toBe(true));
+    await waitFor(() => expect(colorInput.isOpen).toBe(true));
     expect(colorInput.colorInputElements.popover.isOpen).toBe(true);
 
     nativeInput.focus();

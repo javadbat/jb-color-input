@@ -47,7 +47,7 @@ export function Example() {
 - `valueObject`: parsed RGB or OKLCH value, or `null` for empty/invalid text.
 - `colorSpace`: `"rgb"`, `"oklch"`, or `null` to allow switching.
 - `alphaEnabled`: shows or hides alpha controls.
-- `showPicker`: opens or closes the picker.
+- `isOpen`: opens or closes the picker.
 - `openPicker()` / `closePicker()`: imperative picker controls.
 
 All standard `jb-input` properties, validation methods, events, form behavior,

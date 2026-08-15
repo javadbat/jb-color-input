@@ -11,7 +11,7 @@ import "./module-declaration.js";
 export type JBColorInputProps = BaseProps<JBColorInputWebComponent> & {
   colorSpace?: ColorSpace | null;
   alphaEnabled?: boolean;
-  showPicker?: boolean;
+  isOpen?: boolean;
 };
 
 export type { ColorSpace, JBColorPickerValue };
@@ -34,7 +34,7 @@ export const JBColorInput = forwardRef<JBColorInputWebComponent | undefined, JBC
     onKeydown,
     onKeyup,
     required,
-    showPicker,
+    isOpen,
     validationList,
     value,
     ...otherProps
@@ -63,10 +63,10 @@ export const JBColorInput = forwardRef<JBColorInputWebComponent | undefined, JBC
     }
   }, [alphaEnabled]);
   useEffect(() => {
-    if (element.current && showPicker !== undefined) {
-      element.current.showPicker = showPicker;
+    if (element.current && isOpen !== undefined) {
+      element.current.isOpen = isOpen;
     }
-  }, [showPicker]);
+  }, [isOpen]);
 
   const valueProps = value === undefined ? {} : { value: value?.toString() ?? "" };
   return (

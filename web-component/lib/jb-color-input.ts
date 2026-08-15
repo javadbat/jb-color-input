@@ -18,7 +18,7 @@ export { dictionary } from "./i18n.js";
 
 export class JBColorInputWebComponent extends JBInputWebComponent {
   colorInputElements!: ColorInputElements;
-  #showPicker = false;
+  #isOpen = false;
   #colorSpace: ColorSpace | null = null;
   #alphaEnabled = true;
   #dependenciesReady = false;
@@ -91,22 +91,22 @@ export class JBColorInputWebComponent extends JBInputWebComponent {
     return parseColor(this.value);
   }
 
-  get showPicker(): boolean {
-    return this.#showPicker;
+  get isOpen(): boolean {
+    return this.#isOpen;
   }
 
-  set showPicker(value: boolean) {
+  set isOpen(value: boolean) {
     if (value) this.openPicker();
     else this.closePicker();
   }
 
   openPicker(): void {
-    if (this.disabled || this.#showPicker) return;
+    if (this.disabled || this.#isOpen) return;
     if (!this.#dependenciesReady) {
       void this.#prepareDependencies().then(() => this.openPicker());
       return;
     }
-    this.#showPicker = true;
+    this.#isOpen = true;
     this.#updateColorPresentation();
     this.colorInputElements.popover.open();
     this.colorInputElements.trigger.classList.add("--active");
@@ -114,8 +114,8 @@ export class JBColorInputWebComponent extends JBInputWebComponent {
   }
 
   closePicker(): void {
-    if (!this.colorInputElements || !this.#dependenciesReady || !this.#showPicker) return;
-    this.#showPicker = false;
+    if (!this.colorInputElements || !this.#dependenciesReady || !this.#isOpen) return;
+    this.#isOpen = false;
     this.colorInputElements.popover.close();
     this.colorInputElements.trigger.classList.remove("--active");
     this.colorInputElements.trigger.setAttribute("aria-expanded", "false");
@@ -167,12 +167,12 @@ export class JBColorInputWebComponent extends JBInputWebComponent {
 
   #registerColorEvents(): void {
     this.colorInputElements.trigger.addEventListener("click", () => {
-      this.showPicker = !this.showPicker;
+      this.isOpen = !this.isOpen;
     });
     this.colorInputElements.picker.addEventListener("input", event => this.#onPickerInput(event as unknown as ColorPickerChangeEvent));
     this.colorInputElements.picker.addEventListener("change", event => this.#onPickerChange(event as unknown as ColorPickerChangeEvent));
     this.colorInputElements.popover.addEventListener("close", () => {
-      this.#showPicker = false;
+      this.#isOpen = false;
       this.colorInputElements.trigger.classList.remove("--active");
       this.colorInputElements.trigger.setAttribute("aria-expanded", "false");
     });
@@ -183,7 +183,7 @@ export class JBColorInputWebComponent extends JBInputWebComponent {
       if (event.target === this) this.#updateColorPresentation();
     });
     this.addEventListener("keydown", event => {
-      if ((event as KeyboardEvent).key === "Escape" && this.showPicker) {
+      if ((event as KeyboardEvent).key === "Escape" && this.isOpen) {
         this.closePicker();
         this.colorInputElements.trigger.focus();
       }

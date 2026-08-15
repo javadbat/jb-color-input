@@ -59,7 +59,7 @@
             },
             {
               "kind": "field",
-              "name": "showPicker",
+              "name": "isOpen",
               "type": { "text": "boolean" },
               "description": "Whether the picker popover is open."
             },
