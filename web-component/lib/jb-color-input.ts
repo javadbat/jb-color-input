@@ -1,3 +1,4 @@
+import { defineWebComponent, createInputEvent, parseBooleanAttribute } from "jb-core";
 import CSS from "./jb-color-input.css";
 import VariablesCSS from "./variables.css";
 import "jb-color-picker";
@@ -6,7 +7,6 @@ import "jb-popover";
 import { type ColorPickerChangeEvent, type ColorSpace, type JBColorPickerValue, parseColor } from "jb-color-picker";
 import { type JBInputValue, JBInputWebComponent } from "jb-input";
 import type { ValidationItem } from "jb-validation";
-import { createInputEvent, parseBooleanAttribute } from "jb-core";
 import { i18n } from "jb-core/i18n";
 import { dictionary } from "./i18n.js";
 import { createColorTrigger, renderHTML } from "./render.js";
@@ -300,9 +300,7 @@ export class JBColorInputWebComponent extends JBInputWebComponent {
   }
 }
 
-if (!customElements.get("jb-color-input")) {
-  customElements.define("jb-color-input", JBColorInputWebComponent);
-}
+defineWebComponent("jb-color-input", JBColorInputWebComponent);
 
 declare global {
   interface HTMLElementTagNameMap {
