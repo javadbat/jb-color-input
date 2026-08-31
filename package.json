@@ -1,6 +1,6 @@
 {
   "name": "jb-color-input",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "CSS color input and picker web component",
   "type": "module",
   "author": {
@@ -49,10 +49,10 @@
   "bugs": "https://github.com/javadbat/jb-color-input/issues",
   "homepage": "https://javadbat.github.io/design-system/?path=/docs/components-form-elements-inputs-jbcolorinput",
   "dependencies": {
-    "jb-color-picker": "^0.1.0",
-    "jb-core": "^0.35.0",
-    "jb-input": "^3.18.0",
-    "jb-popover": "^1.13.0",
+    "jb-color-picker": "^0.2.0",
+    "jb-core": "^0.36.0",
+    "jb-input": "^3.19.0",
+    "jb-popover": "^1.15.2",
     "jb-validation": "^1.0.0"
   },
   "peerDependencies": {

@@ -153,7 +153,7 @@ export class JBColorInputWebComponent extends JBInputWebComponent {
     const template = document.createElement("template");
     template.innerHTML = `<style>${CSS} ${VariablesCSS}</style>\n${renderHTML()}`;
     this.shadowRoot?.appendChild(template.content.cloneNode(true));
-
+    this.elements.input.setAttribute("inputmode","none")
     const trigger = createColorTrigger();
     this.elements.slots.endSection.parentElement!.append(trigger);
     this.colorInputElements = {
