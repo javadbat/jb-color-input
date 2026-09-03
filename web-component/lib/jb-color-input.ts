@@ -62,7 +62,7 @@ export class JBColorInputWebComponent extends JBInputWebComponent {
     if (!this.colorInputElements || !this.#dependenciesReady) return;
     this.colorInputElements.trigger.disabled = value;
     this.colorInputElements.picker.disabled = value;
-    if (value) this.closePicker();
+    if (value) this.close();
   }
 
   get colorSpace(): ColorSpace | null {
@@ -97,14 +97,14 @@ export class JBColorInputWebComponent extends JBInputWebComponent {
   }
 
   set isOpen(value: boolean) {
-    if (value) this.openPicker();
-    else this.closePicker();
+    if (value) this.open();
+    else this.close();
   }
 
-  openPicker(): void {
+  open(): void {
     if (this.disabled || this.#isOpen) return;
     if (!this.#dependenciesReady) {
-      void this.#prepareDependencies().then(() => this.openPicker());
+      void this.#prepareDependencies().then(() => this.open());
       return;
     }
     this.#isOpen = true;
@@ -114,7 +114,7 @@ export class JBColorInputWebComponent extends JBInputWebComponent {
     this.colorInputElements.trigger.setAttribute("aria-expanded", "true");
   }
 
-  closePicker(): void {
+  close(): void {
     if (!this.colorInputElements || !this.#dependenciesReady || !this.#isOpen) return;
     this.#isOpen = false;
     this.colorInputElements.popover.close();
@@ -122,10 +122,14 @@ export class JBColorInputWebComponent extends JBInputWebComponent {
     this.colorInputElements.trigger.setAttribute("aria-expanded", "false");
   }
 
-  override formResetCallback(): void {
-    super.formResetCallback();
+  override reset(): void {
+    super.reset();
     this.#updateColorPresentation();
-    this.closePicker();
+    this.close();
+  }
+
+  override formResetCallback(): void {
+    this.reset();
   }
 
   static get colorInputObservedAttributes(): string[] {
@@ -192,7 +196,7 @@ export class JBColorInputWebComponent extends JBInputWebComponent {
     const nextFocusedElement = event.relatedTarget;
     const isFocusInside =
       nextFocusedElement instanceof Node && (nextFocusedElement === this || this.contains(nextFocusedElement) || Boolean(this.shadowRoot?.contains(nextFocusedElement)));
-    if (!isFocusInside) this.closePicker();
+    if (!isFocusInside) this.close();
   }
 
   #onFocus(): void {
@@ -203,7 +207,7 @@ export class JBColorInputWebComponent extends JBInputWebComponent {
 
   #onKeyDown(event: KeyboardEvent): void {
     if (event.key === "Escape" && this.isOpen) {
-      this.closePicker();
+      this.close();
       this.colorInputElements.trigger.focus();
       return;
     }

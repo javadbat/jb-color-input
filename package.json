@@ -1,6 +1,6 @@
 {
   "name": "jb-color-input",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "CSS color input and picker web component",
   "type": "module",
   "author": {

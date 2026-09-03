@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.0] - 2026-09-03
+
+### Changed
+
+- Added the standard public `reset()` method; native form reset delegates to it and closes the picker.
+- Breaking: renamed `openPicker()`/`closePicker()` to `open()`/`close()`.
+- Breaking: updated color-picker styling parts to use the shared `root` contract.
+- Breaking: renamed React keyboard event props to the React convention: `onBeforeInput`, `onKeyDown`, and `onKeyUp`; old prop names are removed.
+
 ## [0.2.0] 
 
 ### Changed

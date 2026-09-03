@@ -184,11 +184,11 @@ export const ImperativePicker: Story = {
   play: async ({ canvasElement }) => {
     const colorInput = getColorInput(canvasElement);
 
-    colorInput.openPicker();
+    colorInput.open();
     await waitFor(() => expect(colorInput.isOpen).toBe(true));
     expect(colorInput.colorInputElements.trigger.getAttribute("aria-expanded")).toBe("true");
 
-    colorInput.closePicker();
+    colorInput.close();
     await waitFor(() => expect(colorInput.isOpen).toBe(false));
     expect(colorInput.colorInputElements.trigger.getAttribute("aria-expanded")).toBe("false");
   },
@@ -209,7 +209,7 @@ export const RadiusAndCornerShapes: Story = {
         <JBColorInput
           {...args}
           key={label}
-          label={`${label} · ${radius}`}
+          label={`${label} Â· ${radius}`}
           style={
             {
               "--jb-input-border-radius": radius,

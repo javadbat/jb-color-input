@@ -88,7 +88,7 @@ The five size props change both the shared input shell and color trigger. Disabl
 
 ## Ref access
 
-The forwarded ref exposes `JBColorInputWebComponent`, including `valueObject`, `isOpen`, `openPicker()`, `closePicker()`, validation methods, and `colorInputElements`.
+The forwarded ref exposes `JBColorInputWebComponent`, including `valueObject`, `isOpen`, `open()`, `close()`, validation methods, and `colorInputElements`.
 
 ```tsx
 import { useRef } from "react";
@@ -101,11 +101,11 @@ const inputRef = useRef<JBColorInputWebComponent | undefined>(undefined);
 
 ## Slots
 
-Pass children with `slot="start-section"` or `slot="end-section"` to use the inherited inline sections.
+Pass children with `slot="inline-start"` or `slot="inline-end"` to use the inherited inline sections.
 
 ```tsx
 <JBColorInput label="Accent color">
-  <span slot="start-section">Theme</span>
+  <span slot="inline-start">Theme</span>
 </JBColorInput>
 ```
 

@@ -25,14 +25,14 @@ export const JBColorInput = forwardRef<JBColorInputWebComponent | undefined, JBC
     colorSpace,
     disabled,
     initialValue,
-    onBeforeinput,
+    onBeforeInput,
     onBlur,
     onChange,
     onEnter,
     onFocus,
     onInput,
-    onKeydown,
-    onKeyup,
+    onKeyDown,
+    onKeyUp,
     required,
     isOpen,
     validationList,
@@ -42,14 +42,14 @@ export const JBColorInput = forwardRef<JBColorInputWebComponent | undefined, JBC
 
   useJBColorInputAttributes(element, { disabled, required, validationList });
   useJBInputEvents(element, {
-    onBeforeinput,
+    onBeforeInput,
     onBlur,
     onChange,
     onEnter,
     onFocus,
     onInput,
-    onKeydown,
-    onKeyup,
+    onKeyDown,
+    onKeyUp,
   });
 
   useEffect(() => {

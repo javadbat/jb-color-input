@@ -65,13 +65,18 @@
             },
             {
               "kind": "method",
-              "name": "openPicker",
+              "name": "open",
               "description": "Opens the color picker."
             },
             {
               "kind": "method",
-              "name": "closePicker",
+              "name": "close",
               "description": "Closes the color picker."
+            },
+            {
+              "kind": "method",
+              "name": "reset",
+              "description": "Restores initialValue, clears displayed validation, and closes the picker."
             }
           ],
           "events": [

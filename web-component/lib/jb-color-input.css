@@ -1,8 +1,8 @@
-.input-box {
+.control {
   corner-shape: var(--color-corner-shape);
 }
 
-.jb-input-end-section-wrapper {
+.jb-input-inline-end-wrapper {
   display: flex;
   height: 100%;
   align-items: center;

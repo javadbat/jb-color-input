@@ -34,7 +34,7 @@ Use [`jb-color-picker`](https://github.com/javadbat/jb-color-picker) when you ne
 
 <a href="https://github.com/javadbat/jb-color-input/tree/main/react" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/React.js-jb--color--input%2Freact-000.svg?logo=react&logoColor=%2361DAFB" height="30" /></a> See the [React documentation](https://javadbat.github.io/design-system/?path=/docs/components-form-elements-inputs-jbcolorinput-react-readme--docs).
 
-Other integrations: <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#angular" target="_blank" rel="noopener noreferrer">Angular</a> · <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#vue" target="_blank" rel="noopener noreferrer">Vue</a> · <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#nuxt" target="_blank" rel="noopener noreferrer">Nuxt</a> · <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#svelte" target="_blank" rel="noopener noreferrer">Svelte</a> · <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#sveltekit" target="_blank" rel="noopener noreferrer">SvelteKit</a> · <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#solidjs" target="_blank" rel="noopener noreferrer">SolidJS</a> · <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#lit" target="_blank" rel="noopener noreferrer">Lit</a> · <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#nextjs" target="_blank" rel="noopener noreferrer">Next.js</a> · <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#astro" target="_blank" rel="noopener noreferrer">Astro</a> · <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#blazor" target="_blank" rel="noopener noreferrer">Blazor</a> · <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#server-rendered-templates" target="_blank" rel="noopener noreferrer">Server-rendered templates</a> · <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#wordpress" target="_blank" rel="noopener noreferrer">WordPress</a> · <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#alpinejs-and-htmx" target="_blank" rel="noopener noreferrer">Alpine.js and HTMX</a>
+Other integrations: <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#angular" target="_blank" rel="noopener noreferrer">Angular</a> Â· <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#vue" target="_blank" rel="noopener noreferrer">Vue</a> Â· <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#nuxt" target="_blank" rel="noopener noreferrer">Nuxt</a> Â· <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#svelte" target="_blank" rel="noopener noreferrer">Svelte</a> Â· <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#sveltekit" target="_blank" rel="noopener noreferrer">SvelteKit</a> Â· <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#solidjs" target="_blank" rel="noopener noreferrer">SolidJS</a> Â· <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#lit" target="_blank" rel="noopener noreferrer">Lit</a> Â· <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#nextjs" target="_blank" rel="noopener noreferrer">Next.js</a> Â· <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#astro" target="_blank" rel="noopener noreferrer">Astro</a> Â· <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#blazor" target="_blank" rel="noopener noreferrer">Blazor</a> Â· <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#server-rendered-templates" target="_blank" rel="noopener noreferrer">Server-rendered templates</a> Â· <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#wordpress" target="_blank" rel="noopener noreferrer">WordPress</a> Â· <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#alpinejs-and-htmx" target="_blank" rel="noopener noreferrer">Alpine.js and HTMX</a>
 
 ## Installation
 
@@ -102,8 +102,9 @@ Inherited properties include `initialValue`, `validation`, `disabled`, `required
 
 | name | returns | description |
 | --- | --- | --- |
-| `openPicker()` | `void` | Opens the picker unless the input is disabled. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbcolorinput--imperative-picker) |
-| `closePicker()` | `void` | Closes the picker. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbcolorinput--imperative-picker) |
+| `open()` | `void` | Opens the picker unless the input is disabled. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbcolorinput--imperative-picker) |
+| `close()` | `void` | Closes the picker. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbcolorinput--imperative-picker) |
+| `reset()` | `void` | Restores `initialValue`, clears displayed validation, and closes the picker. |
 | `checkValidity()` | `boolean` | Checks required, CSS-color, and custom validation without showing an error. |
 | `reportValidity()` | `boolean` | Checks validity and displays the first error. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbcolorinput--invalid-color) |
 | `focus()` | `void` | Focuses the native input; focus opens the picker when enabled. |
@@ -166,7 +167,7 @@ input.addEventListener("input", event => {
 
 ## Slots
 
-The inherited `start-section` and `end-section` slots remain available. The color trigger is rendered alongside end-section content. See the [`jb-input` slot documentation](https://github.com/javadbat/jb-input#slots).
+The inherited `inline-start` and `inline-end` slots remain available. The color trigger is rendered alongside inline-end content. See the [`jb-input` slot documentation](https://github.com/javadbat/jb-input#slots).
 
 ## CSS variables
 
@@ -203,11 +204,11 @@ jb-color-input {
 | `popover-content` | Exported popover content wrapper. |
 | `color-picker` | Embedded `jb-color-picker`. |
 
-The inherited `label`, `input-box`, `input`, and `message` parts and the `disabled` and `invalid` custom states also apply.
+The inherited `label`, `control`, `input`, and `message` parts and the `disabled` and `invalid` custom states also apply.
 
 ## Accessibility notes
 
-- The trigger is a button labeled “Open color picker” with `aria-haspopup="dialog"` and synchronized `aria-expanded`.
+- The trigger is a button labeled â€œOpen color pickerâ€ with `aria-haspopup="dialog"` and synchronized `aria-expanded`.
 - The color preview is decorative and hidden from accessibility APIs.
 - Focusing the text input opens the picker; Escape closes it and focuses the trigger.
 - Focus can move between the input, trigger, popover, and picker without closing the popover. Moving outside closes it.
